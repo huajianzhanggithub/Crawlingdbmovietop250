@@ -42,16 +42,20 @@ def changemoviesname(movies_rns):
     read_file_dir = "D:/娱乐/电影"
 
     files = listdir(read_file_dir) # 列出当前目录下所有的文件
-
-    for filename in files:
-        oldmovienames = path.splitext(filename) # 分离文件名字和后缀
-        for oldmovienames[0]
-            if oldmovienames[0].count(movies_rns.split("-")[1])!=0:  #检测扩展名
-                newname = movies_rns  #改新的新扩展名
-                os.chdir(read_file_dir)  
-                os.rename(filename,newname)
-                print(os.path.basename(filename)+' -> '+ os.path.basename(newname))
+    try:
+    
+            for filename in files:
+                oldmoviename = path.splitext(filename) # 分离文件名字和后缀
+                if oldmoviename[0].count(movies_rns.split("-")[1])!=0:  #检测扩展名
+                    newname = movies_rns+oldmoviename[1]  #改新的新扩展名
+                    os.chdir(read_file_dir)  
+                    os.rename(filename,newname)
+                    print(os.path.basename(filename)+' -> '+ os.path.basename(newname))
+    
+    except :
+        pass
 if __name__=="__main__":
     movieslist=crawlingdbmovietop250()
     for ml in movieslist:
         changemoviesname(ml)
+        #movieslist.pop(movieslist.index(ml))
